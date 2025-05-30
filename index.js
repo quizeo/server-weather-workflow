@@ -13,7 +13,7 @@ import historyLogs from "./Controller/historyLogs.js";
 import deleteController from "./Controller/deleteController.js";
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "https://weather-frontend.netlify.app"],
 };
 
 const dbConnection = process.env.MONGO_URI;
