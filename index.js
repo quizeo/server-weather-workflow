@@ -13,14 +13,26 @@ import historyLogs from "./Controller/historyLogs.js";
 import deleteController from "./Controller/deleteController.js";
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://weather-frontend.netlify.app"],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "https://zeo-weather-email.netlify.app",
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 };
 
 const dbConnection = process.env.MONGO_URI;
 
 const app = express();
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 //routes
 app.use("/api/weather", getWeatherController);
