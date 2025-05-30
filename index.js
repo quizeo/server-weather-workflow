@@ -13,13 +13,9 @@ import historyLogs from "./Controller/historyLogs.js";
 import deleteController from "./Controller/deleteController.js";
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://zeo-weather-email.netlify.app/", // Add your Netlify domain here
-    "https://*.netlify.app",
-  ],
+  origin: "*", // Allow all origins (for testing only)
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
-  credentials: true,
+  credentials: false, // Must be false when using "*" origin
 };
 const dbConnection = process.env.MONGO_URI;
 
